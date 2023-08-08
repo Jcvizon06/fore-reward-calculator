@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fore Calculator Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Fore Calculator Result</h1>
+    <table class="data">
+        {{ table | safe }}
+    </table>
+</body>
+</html>

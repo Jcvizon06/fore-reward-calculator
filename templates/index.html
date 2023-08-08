@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FOREPROTOCOL</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>FOREPROTOCOL</h1>
+    <p>Reward Calculator</p>
+
+    <form action="/" method="post" class="calculator-form">
+        <div class="form-group">
+            <label for="market_size">Market Size:</label>
+            <input type="range" name="market_size" id="market_size" min="1000" max="100000" value="10000" step="0.01">
+            <span id="market_size_value">10,000</span>
+        </div>
+
+        <div class="form-group">
+            <label for="validator_reward_rate">Validator Reward Rate:</label>
+            <input type="range" name="validator_reward_rate" id="validator_reward_rate" min="0.01" max="0.1" step="0.01" value="0.02">
+            <span id="validator_reward_rate_value">0.02</span>
+        </div>
+
+        <div class="form-group">
+            <label for="starting_power">Starting Power:</label>
+            <input type="range" name="starting_power" id="starting_power" min="100" max="5000" value="1000" step="0.01">
+            <span id="starting_power_value">1,000</span>
+        </div>
+
+        <input type="submit" value="Calculate Rewards">
+    </form>
+
+    <script>
+        // Display slider values next to the sliders
+        const marketSizeSlider = document.getElementById('market_size');
+        const marketSizeValue = document.getElementById('market_size_value');
+        marketSizeValue.innerHTML = formatNumberWithCommas(marketSizeSlider.value);
+        marketSizeSlider.oninput = function () {
+            marketSizeValue.innerHTML = formatNumberWithCommas(this.value);
+        }
+
+        const validatorRewardRateSlider = document.getElementById('validator_reward_rate');
+        const validatorRewardRateValue = document.getElementById('validator_reward_rate_value');
+        validatorRewardRateValue.innerHTML = validatorRewardRateSlider.value;
+        validatorRewardRateSlider.oninput = function () {
+            validatorRewardRateValue.innerHTML = this.value;
+        }
+
+        const startingPowerSlider = document.getElementById('starting_power');
+        const startingPowerValue = document.getElementById('starting_power_value');
+        startingPowerValue.innerHTML = formatNumberWithCommas(startingPowerSlider.value);
+        startingPowerSlider.oninput = function () {
+            startingPowerValue.innerHTML = formatNumberWithCommas(this.value);
+        }
+
+        // Function to format number with commas
+        function formatNumberWithCommas(number) {
+            return Number(number).toLocaleString();
+        }
+    </script>
+</body>
+</html>
