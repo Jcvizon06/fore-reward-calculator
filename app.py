@@ -50,6 +50,9 @@ def calcCAGR(df):
     
     return cagr * 100
 
+def convert_to_percent(cagr):
+    return str(cagr) + '%'
+
 @app.route('/', methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
@@ -78,6 +81,8 @@ def home():
 
         # Format numbers with commas for thousands
         results_matrix = results_matrix.applymap('{:,.2f}'.format)
+        results_matrix['CAGR'] = results_matrix['CAGR'].apply(convert_to_percent)
+        
 
 
 
