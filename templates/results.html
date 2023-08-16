@@ -3,12 +3,39 @@
 <head>
     <title>Fore Calculator Result</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- <style>
+        /* Add a custom CSS style */
+        .header-cell {
+            background-color: #05162c; /* Light gray background color */
+        }
+    </style> -->
 </head>
 <body>
-    <h1>Fore Calculator Result</h1>
-    <table class="data">
-        {{ table | safe }}
-    </table>
+    <div class="container">
+        <h1 class="mt-5">Fore Calculator Result</h1>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th colspan="{{ num_columns }}" class="header-cell text-center"> </th>
+                        {% for header in headings %}
+                            <th>{{ header }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in data %}
+                        <tr>
+                            {% for cell in row %}
+                                <td>{{ cell }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 </body>
 </html>

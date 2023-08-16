@@ -82,11 +82,13 @@ def home():
         # Format numbers with commas for thousands
         results_matrix = results_matrix.applymap('{:,.2f}'.format)
         results_matrix['CAGR'] = results_matrix['CAGR'].apply(convert_to_percent)
-        
+        print(results_matrix)
 
+        headings = tuple(results_matrix.columns)
+        print(results_matrix.index)
+        data = list(results_matrix.itertuples(index=True))
+        return render_template('results.html', index_name=' ', headings=headings, data=data)
 
-
-        return render_template('results.html', table=results_matrix.to_html(classes='data', header="true"))
     else:
         return render_template('index.html')
 
