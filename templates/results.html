@@ -1,41 +1,102 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Fore Calculator Result</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- <style>
-        /* Add a custom CSS style */
-        .header-cell {
-            background-color: #05162c; /* Light gray background color */
-        }
-    </style> -->
+    <!-- Include DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 </head>
+
 <body>
     <div class="container">
         <h1 class="mt-5 text-center">Fore Reward Calculator Result</h1>
+
+        <!-- Table 1 -->
         <div class="table-responsive">
+            <h2 class="mt-5 text-center">Reward Computation Overview</h2>
             <table class="table table-bordered table-striped">
                 <thead class="thead-dark">
                     <tr>
                         <th colspan="{{ num_columns }}" class="header-cell text-center"> </th>
-                        {% for header in headings %}
-                            <th>{{ header }}</th>
+                        {% for header in headings[0] %}
+                        <th>{{ header }}</th>
+                        {% endfor %}
+                <tbody>
+                    {% for row in data[0] %}
+                    <tr>
+                        {% for cell in row %}
+                        <td>{{ cell }}</td>
                         {% endfor %}
                     </tr>
-                </thead>
-                <tbody>
-                    {% for row in data %}
-                        <tr>
-                            {% for cell in row %}
-                                <td>{{ cell }}</td>
-                            {% endfor %}
-                        </tr>
                     {% endfor %}
                 </tbody>
             </table>
         </div>
+
+        <!-- Table 2 -->
+        <div class="table-responsive">
+            <h2 class="mt-5 text-center">Compounding Rewards</h2>
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th colspan="{{ num_columns }}" class="header-cell text-center"> </th>
+                        {% for header in headings[1] %}
+                        <th>{{ header }}</th>
+                        {% endfor %}
+                <tbody>
+                    {% for row in data[1] %}
+                    <tr>
+                        {% for cell in row %}
+                        <td>{{ cell }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Table 3 -->
+        <div class="table-responsive">
+            <h2 class="mt-5 text-center">Non-Compounding Rewards</h2>
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th colspan="{{ num_columns }}" class="header-cell text-center"> </th>
+                        {% for header in headings[2] %}
+                        <th>{{ header }}</th>
+                        {% endfor %}
+                <tbody>
+                    {% for row in data[2] %}
+                    <tr>
+                        {% for cell in row %}
+                        <td>{{ cell }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
     </div>
+    <!-- Include jQuery and DataTables JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.table').DataTable({
+                paging: true,     // Enable pagination
+                pageLength: 10,   // Set the default number of rows per page
+                searching: true,  // Enable searching
+                ordering: true,   // Enable sorting
+                info: true,       // Show information about the current page
+                responsive: true  // Enable responsive design
+            });
+        });
+    </script>
 </body>
+
 </html>

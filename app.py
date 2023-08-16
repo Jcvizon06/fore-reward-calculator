@@ -84,11 +84,15 @@ def home():
         results_matrix['CAGR'] = results_matrix['CAGR'].apply(convert_to_percent)
         print(results_matrix)
 
-        headings = tuple(results_matrix.columns)
-        print(results_matrix.index)
-        data = list(results_matrix.itertuples(index=True))
-        return render_template('results.html', index_name=' ', headings=headings, data=data)
+        headings1 = tuple(results_matrix.columns)
+        headings2 = tuple(compounding_rewards_df.columns)
+        headings3 = tuple(non_compounding_rewards_df.columns)
 
+        print(results_matrix.index)
+        result_matrix = list(results_matrix.itertuples(index=True))
+        comp_rew_df = list(compounding_rewards_df.itertuples(index=True))
+        non_comp_rew_df = list(non_compounding_rewards_df.itertuples(index=True))
+        return render_template('results.html', index_name=' ', headings=[headings1,headings2,headings3], data=[result_matrix,comp_rew_df,non_comp_rew_df])
     else:
         return render_template('index.html')
 
