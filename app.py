@@ -57,12 +57,16 @@ def convert_to_percent(cagr):
 def home():
     if request.method == 'POST':
         market_size = float(request.form.get('market_size'))
-        validator_reward_rate = float(request.form.get('validator_reward_rate'))
+        # validator_reward_rate = float(request.form.get('validator_reward_rate'))
         starting_power = float(request.form.get('starting_power'))
 
+        # # Compute the rewards
+        # compounding_rewards_df = calc_rewards(market_size, validator_reward_rate, starting_power, compounding=True)
+        # non_compounding_rewards_df = calc_rewards(market_size, validator_reward_rate, starting_power, compounding=False)
+        
         # Compute the rewards
-        compounding_rewards_df = calc_rewards(market_size, validator_reward_rate, starting_power, compounding=True)
-        non_compounding_rewards_df = calc_rewards(market_size, validator_reward_rate, starting_power, compounding=False)
+        compounding_rewards_df = calc_rewards(market_size=market_size, starting_power=starting_power, compounding=True)
+        non_compounding_rewards_df = calc_rewards(market_size=market_size, starting_power=starting_power, compounding=False)
 
         # Calculate the CAGR
         compounding_cagr = calcCAGR(compounding_rewards_df)

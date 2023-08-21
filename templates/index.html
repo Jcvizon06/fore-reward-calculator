@@ -18,10 +18,10 @@
             <span id="market_size_value">10,000</span>
         </div>
 
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label for="validator_reward_rate">Validator Reward Rate:</label>
             <input type="range" name="validator_reward_rate" id="validator_reward_rate" min="0.01" max="0.1" step="0.01" value="0.02">
-            <span id="validator_reward_rate_value">0.02</span>
+            <span id="validator_reward_rate_value">0.02</span> -->
         </div>
 
         <div class="form-group">
@@ -42,12 +42,12 @@
             marketSizeValue.innerHTML = formatNumberWithCommas(this.value);
         }
 
-        const validatorRewardRateSlider = document.getElementById('validator_reward_rate');
-        const validatorRewardRateValue = document.getElementById('validator_reward_rate_value');
-        validatorRewardRateValue.innerHTML = validatorRewardRateSlider.value;
-        validatorRewardRateSlider.oninput = function () {
-            validatorRewardRateValue.innerHTML = this.value;
-        }
+        // const validatorRewardRateSlider = document.getElementById('validator_reward_rate');
+        // const validatorRewardRateValue = document.getElementById('validator_reward_rate_value');
+        // validatorRewardRateValue.innerHTML = validatorRewardRateSlider.value;
+        // validatorRewardRateSlider.oninput = function () {
+        //     validatorRewardRateValue.innerHTML = this.value;
+        // }
 
         const startingPowerSlider = document.getElementById('starting_power');
         const startingPowerValue = document.getElementById('starting_power_value');
